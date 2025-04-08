@@ -24,8 +24,14 @@ class CinemaHallSerializer(serializers.ModelSerializer):
 
 
 class MovieSerializer(serializers.ModelSerializer):
-    genres = serializers.PrimaryKeyRelatedField(queryset=Genre.objects.all(), many=True)
-    actors = serializers.PrimaryKeyRelatedField(queryset=Actor.objects.all(), many=True)
+    genres = serializers.PrimaryKeyRelatedField(
+        queryset=Genre.objects.all(),
+        many=True
+    )
+    actors = serializers.PrimaryKeyRelatedField(
+        queryset=Actor.objects.all(),
+        many=True
+    )
 
     class Meta:
         model = Movie
@@ -39,8 +45,17 @@ class MovieSessionSerializer(serializers.ModelSerializer):
         read_only_fields = ("id", )
 
     def update(self, instance, validated_data):
-        instance.show_time = validated_data.get("show_time", instance.show_time)
-        instance.movie = validated_data.get("movie", instance.movie)
-        instance.cinema_hall = validated_data.get("cinema_hall", instance.cinema_hall)
+        instance.show_time = validated_data.get(
+            "show_time",
+            instance.show_time
+        )
+        instance.movie = validated_data.get(
+            "movie",
+            instance.movie
+        )
+        instance.cinema_hall = validated_data.get(
+            "cinema_hall",
+            instance.cinema_hall
+        )
         instance.save()
         return instance
