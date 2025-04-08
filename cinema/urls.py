@@ -5,12 +5,12 @@ from . import views
 
 router = DefaultRouter()
 
-router.register(r"genres", views.GenreViewSet)
-router.register(r"actors", views.ActorViewSet)
-router.register(r"cinema_halls", views.CinemaHallViewSet)
-router.register(r"movies", views.MovieViewSet)
-router.register(r"movie_sessions", views.MovieSessionViewSet)
+router.register("genres", views.GenreViewSet)
+router.register("actors", views.ActorViewSet)
+router.register("cinema_halls", views.CinemaHallViewSet)
+router.register("movies", views.MovieViewSet)
+router.register("movie_sessions", views.MovieSessionViewSet)
 
 urlpatterns = [
-    path("api/", include(router.urls)),
+    path("api/cinema/", include(router.urls)),
 ]
