@@ -33,6 +33,8 @@ class ActorSerializer(serializers.ModelSerializer):
         model = Actor
         fields = ("id", "first_name", "last_name", "full_name")
 
+    full_name = serializers.SerializerMethodField()
+
     def get_full_name(self, name):
         return f"{name.first_name} {name.last_name}"
 
