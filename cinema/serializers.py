@@ -1,12 +1,6 @@
 from rest_framework import serializers
 
-from cinema.models import (
-    Genre,
-    Actor,
-    CinemaHall,
-    Movie,
-    MovieSession
-)
+from cinema.models import Genre, Actor, CinemaHall, Movie, MovieSession
 
 
 class GenreSerializer(serializers.ModelSerializer):
@@ -53,7 +47,9 @@ class MovieSessionSerializer(serializers.ModelSerializer):
 
 
 class MovieSessionListSerializer(MovieSessionSerializer):
-    cinema_hall_capacity = serializers.IntegerField(source="cinema_hall.capacity") # noqa
+    cinema_hall_capacity = serializers.IntegerField(
+        source="cinema_hall.capacity"
+    )  # noqa
 
     class Meta:
         model = MovieSession
@@ -62,7 +58,7 @@ class MovieSessionListSerializer(MovieSessionSerializer):
             "show_time",
             "movie_title",
             "cinema_hall_name",
-            "cinema_hall_capacity"
+            "cinema_hall_capacity",
         )
 
 
