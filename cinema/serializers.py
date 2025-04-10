@@ -33,8 +33,6 @@ class ActorSerializer(serializers.ModelSerializer):
         model = Actor
         fields = ("id", "first_name", "last_name", "full_name")
 
-    full_name = serializers.SerializerMethodField()
-
     def get_full_name(self, name):
         return f"{name.first_name} {name.last_name}"
 
@@ -84,8 +82,8 @@ class MovieSessionListSerializer(serializers.ModelSerializer):
                   "cinema_hall_capacity"
                   )
 
-    def get_cinema_hall_capacity(self, capacity):
-        return capacity.cinema_hall.capacity
+    def get_cinema_hall_capacity(self, session):
+        return session.cinema_hall.capacity
 
 
 class MovieSessionRetrieveSerializer(serializers.ModelSerializer):
